@@ -53,6 +53,10 @@ import { store } from '../assets/data/store'
                 opacity: 0;
                 transition: all 1.3s linear;
             }
+            &:hover .menu{
+                background-color: #170f1f;
+                transition: all 0.5s linear;
+            }
 
             img{
                 width: 100%;
@@ -77,7 +81,7 @@ import { store } from '../assets/data/store'
                 bottom: 0%;
                 height: 70px;
                 width: 100%;
-                background-color: #1d1427aa;
+                background-color:  #170f1fbf;
 
                 h4{
                     font-family: 'Oxanium', sans-serif;
