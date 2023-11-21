@@ -1,6 +1,6 @@
 <template>
     <div class="col-6 position-relative">
-        <img :src="img" alt="Bf4 banner">
+        <img :src="img" :alt="title">
         <div id="over-image">
             <h4 class="non-entra">{{ tag }}</h4>
             <h2 class="text-light">{{ title }}</h2>
@@ -30,7 +30,8 @@
 
 <style lang="scss" scoped>
 @use '../assets/styles/partials/variables' as *;  
-    div{
+    .col-6{
+        position: relative;
 
         img{
             width: 100%;

@@ -240,15 +240,15 @@ export const store = reactive({
   ],
   verticalCard: [
     {
-      image: "/image/category-image-01.jpg",
+      image: "/images/category-image-01.jpg",
       titolo: "PUBG",
     },
     {
-      image: "/image/category-image-02.jpg",
+      image: "/images/category-image-02.jpg",
       titolo: "BF-3",
     },
     {
-      image: "/image/category-image-03.jpg",
+      image: "/images/category-image-03.jpg",
       titolo: "Dragon Ball",
     },
   ],

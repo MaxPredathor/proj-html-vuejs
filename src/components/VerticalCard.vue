@@ -1,9 +1,13 @@
 <template>
-    <div class="col-3">
-        <img :src="img" :alt="titolo">
-        <div>
-            <h4>{{ titolo }}</h4>
-            <p>Shop Now</p>
+    <div class="col-4">
+        <div class="wrapperino">
+            <img :src="img" :alt="titolo">
+            <div id="retract"></div>
+            <div id="expand"></div>
+            <div class="menu">
+                <h4>{{ titolo }}</h4>
+                <p>Shop Now</p>
+            </div>
         </div>
     </div>
 </template>
@@ -32,24 +36,64 @@ import { store } from '../assets/data/store'
 
 <style lang="scss" scoped>
 @use '../assets/styles/partials/variables' as *;
-    div{
-        height: 500px;
-
-        img{
+    .col-4{
+        position: relative;
+        overflow: hidden;
+        .wrapperino{
             width: 100%;
-        }
-        div{
-            position: absolute;
-            height: 70px;
-            background-color: rgba(0, 0, 0, 0.418);
+            height: 500px;
 
-            h4{
-                font-family: 'Oxanium', sans-serif;
+            &:hover #expand{
+                height: 100%;
+                opacity: 0;
+                transition: all 1.3s linear;
             }
-            p{
-                color: $palette_yellow;
-                text-decoration: underline;
+            &:hover #retract{
+                height: 100%;
+                opacity: 0;
+                transition: all 1.3s linear;
+            }
+
+            img{
+                width: 100%;
+                
+            }
+            #retract{
+                width: 416px;
+                height: 0px;
+                background-color: rgba(255, 255, 255, 0.2);
+                position: absolute;
+                bottom: 50%;
+            }
+            #expand{
+                width: 416px;
+                height: 0px;
+                background-color: rgba(255, 255, 255, 0.2);
+                position: absolute;
+                top: 50%;
+            }
+            .menu{
+                position: absolute;
+                bottom: 0%;
+                height: 70px;
+                width: 100%;
+                background-color: #1d1427aa;
+
+                h4{
+                    font-family: 'Oxanium', sans-serif;
+                    color: white;
+                    padding: 5px 10px;
+                    margin: 0;
+                }
+                p{
+                    color: $palette_yellow;
+                    text-decoration: underline;
+                    padding: 5px 10px;
+                    margin: 0;
+                    cursor: pointer;
+                }
             }
         }
+        
     }
 </style>

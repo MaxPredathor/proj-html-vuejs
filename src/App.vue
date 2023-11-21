@@ -49,7 +49,10 @@
     </section>
     <section>
       <div class="container">
-        <h2>Special Category</h2>
+        <div class="position-relative mt-5 mb-3">
+          <h2 class="category">Special Category</h2>
+          <div class="small-border position-absolute"></div>
+        </div>
         <div class="row">
           <VerticalCard v-for="item in store.verticalCard"
           :img="item.image"
@@ -160,5 +163,19 @@ import VerticalCard from './components/VerticalCard.vue'
     #return:hover .semi-card-img{ 
         background-position: center  -675px;
         transition: all 0.4s ease;
+    }
+    .category{
+      color: white;
+      text-align: center;
+      font-family: 'Oxanium', sans-serif;
+      padding: 20px 0;
+    }
+    .small-border{
+      display: flex;
+      justify-content: center;
+      width: 40px;
+      border-bottom: 2px solid $palette_yellow;
+      top: 65px;
+      left: 48%;
     }
 </style>
