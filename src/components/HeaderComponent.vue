@@ -24,10 +24,15 @@
                 </div>
                 <div class="col-6 col-md-6 col-lg-6">
                     <ul class="d-flex justify-content-evenly gap-3 pt-4">
-                        <li v-for="(item, index) in store.navbar">
+                        <li id="nav-list" v-for="item in store.navbar">
                             <a :href="item.url">{{ item.title }}</a>
-                            <div>
-                                <p>{{ item.options.name }}</p>
+                            <div class="submenu d-none">
+                                <div class="menupart" v-show="item.options.length > 0">
+                                    <a :href="subitem.url" v-for="subitem in item.options" :class="(subitem.isTitle ? 'is-title' : '')">{{ subitem.name }}</a>
+                                </div>
+                                <div id="border" class="menupart" v-show="item.options2.length > 0">
+                                    <a v-for="subitem in item.options2" :class="(subitem.isTitle ? 'is-title' : '')">{{ subitem.name }}</a>
+                                </div>
                             </div>
                         </li>
                     </ul>
@@ -99,6 +104,42 @@ import { store } from '../assets/data/store'
     .line-separator{
         color: rgba(128, 128, 128, 0.5);
         font-size: 1em;
+    }
+    
+    #nav-list{
+        font-family: 'Oxanium', sans-serif;
+        font-size: 1em;
+
+        &:hover .submenu{
+            display: flex !important;
+        }
+        .submenu{
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.8em;
+            color: $small_text;
+            border: 1px solid #342c3d;
+            position: absolute;
+            background-color: $palette_purple;
+
+            .menupart{
+                display: flex;
+                flex-direction: column;
+                padding: 20px 30px;
+
+                a{
+                    padding: 5px;
+                    font-size: 1.2em;
+                }
+                .is-title{
+                    color: $palette_yellow;
+                    font-size: 1.4em;
+                    padding: 5px 2px;
+                }
+            }
+            #border{
+                    border-left: 1px solid #342c3d;
+            }
+        }
     }
 
 </style>
