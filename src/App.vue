@@ -114,15 +114,19 @@ import LargeCard from './components/LargeCard.vue'
       }
       .delivery{
         background-position: center -110px;
+        transition: all 0.4s ease;
       }
       .money{
         background-position: center -335px;
+        transition: all 0.4s ease;
       }
       .discount{
         background-position: center -563px;
+        transition: all 0.4s ease;
       }
       .return{
         background-position: center -788px;
+        transition: all 0.4s ease;
       }
       .my-border{
         border-right: 1px solid rgba(128, 128, 128, 0.5);
