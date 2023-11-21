@@ -8,3 +8,11 @@ $fa-font-path: '../webfonts';
 @import '@fortawesome/fontawesome-free/scss/solid.scss'; 
 @import '@fortawesome/fontawesome-free/scss/regular.scss'; 
 @import '@fortawesome/fontawesome-free/scss/brands.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@600&family=Poppins&display=swap');
+
+body{
+  // font-family: 'Oxanium', sans-serif;
+  font-family: 'Poppins', sans-serif;
+  background-image: url(/images/body-bg.jpg);
+}
