@@ -47,6 +47,17 @@
         </div>
       </div>
     </section>
+    <section>
+      <div class="container">
+        <h2>Special Category</h2>
+        <div class="row">
+          <VerticalCard v-for="item in store.verticalCard"
+          :img="item.image"
+          :titolo="item.titolo"
+          />
+        </div>
+      </div>
+    </section>
   </main>
 </template>
 
@@ -54,11 +65,13 @@
 import { store } from './assets/data/store'
 import HeaderComponent from './components/HeaderComponent.vue'
 import LargeCard from './components/LargeCard.vue'
+import VerticalCard from './components/VerticalCard.vue'
   export default {
     name: 'App',
     components: {
       HeaderComponent,
-      LargeCard
+      LargeCard,
+      VerticalCard
     },
     data(){
       return{
@@ -148,7 +161,4 @@ import LargeCard from './components/LargeCard.vue'
         background-position: center  -675px;
         transition: all 0.4s ease;
     }
-    
-
-
 </style>

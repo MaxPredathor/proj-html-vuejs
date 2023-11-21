@@ -238,4 +238,18 @@ export const store = reactive({
       img: "/images/cms-banner-02.jpg",
     },
   ],
+  verticalCard: [
+    {
+      image: "/image/category-image-01.jpg",
+      titolo: "PUBG",
+    },
+    {
+      image: "/image/category-image-02.jpg",
+      titolo: "BF-3",
+    },
+    {
+      image: "/image/category-image-03.jpg",
+      titolo: "Dragon Ball",
+    },
+  ],
 });
