@@ -9,28 +9,28 @@
     <section>
       <div class="container">
         <div class="row">
-          <div class="col-3 semi-card">
+          <div id="delivery" class="col-3 semi-card">
             <div class="semi-card-img delivery"></div> 
             <div class="text my-border">
               <h6 class="ps-4">Free Delivery</h6>
               <p class="ps-4">Free Shipping On All Order</p>
             </div>
           </div>
-          <div class="col-3 semi-card">
+          <div id="money" class="col-3 semi-card">
             <div class="semi-card-img money"></div> 
             <div class="text my-border">
               <h6 class="ps-4">Money Return</h6>
               <p class="ps-4">Back Guarantee in 7 days</p>
             </div>
           </div>
-          <div class="col-3 semi-card">
+          <div id="discount" class="col-3 semi-card">
             <div class="semi-card-img discount"></div> 
             <div class="text my-border">
               <h6 class="ps-4">Member Discount</h6>
               <p class="ps-4">On every order over $130.00</p>
             </div>
           </div>
-          <div class="col-3 semi-card">
+          <div id="return" class="col-3 semi-card">
             <div class="semi-card-img return"></div> 
             <div class="text">
               <h6 class="ps-4">Return Policy</h6>
@@ -84,14 +84,33 @@ import LargeCard from './components/LargeCard.vue'
       display: flex;
       justify-content: space-evenly;
       align-items: center;
-      height: 120px;
+      height: 250px;
+
+      &:hover h6{
+        color: $palette_yellow;
+      }
       .semi-card-img{
         margin: 20px 0;
         background-image: url(/images/service-icon.png);
         background-repeat: no-repeat;
         width: 70px;
         height: 40px;
-        display: inline-block;
+      }
+      .text{
+        color: white;
+        width: 90%;
+
+        h6{
+          padding: 0;
+          margin: 0;
+          font-weight: bold;
+          font-family: 'Oxanium', sans-serif;
+        }
+        p{
+          margin: 0;
+          font-size: 0.9em;
+          padding-top: 5px;
+        }
       }
       .delivery{
         background-position: center -110px;
@@ -100,30 +119,30 @@ import LargeCard from './components/LargeCard.vue'
         background-position: center -335px;
       }
       .discount{
-        background-position: center -562px;
+        background-position: center -563px;
       }
       .return{
         background-position: center -788px;
       }
-      .text{
-        display: inline-block;
-        color: white;
-        width: 90%;
-
-        h6{
-          padding: 0;
-          margin: 0;
-          font-weight: bold;
-        }
-        p{
-          margin: 0;
-          font-size: 0.9em;
-          padding-top: 5px;
-        }
-      }
       .my-border{
         border-right: 1px solid rgba(128, 128, 128, 0.5);
       }
+    }
+    #delivery:hover .semi-card-img{ 
+        background-position: center  3px;
+        transition: all 0.4s ease;
+    }
+    #money:hover .semi-card-img{ 
+        background-position: center  -222px;
+        transition: all 0.4s ease;
+    }
+    #discount:hover .semi-card-img{ 
+        background-position: center  -450px;
+        transition: all 0.4s ease;
+    }
+    #return:hover .semi-card-img{ 
+        background-position: center  -675px;
+        transition: all 0.4s ease;
     }
     
 
