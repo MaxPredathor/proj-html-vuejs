@@ -252,6 +252,33 @@ export const store = reactive({
       titolo: "Dragon Ball",
     },
   ],
+  service: [
+    {
+      title: "Free Delivery",
+      desc: "Free Shipping On All Order",
+      image: "/images/service-icon.png",
+      px: "-110px",
+    },
+    {
+      title: "Money Return",
+      desc: "Free Shipping On All Order",
+      image: "Back Guarantee in 7 days",
+      px: "-335px",
+    },
+    {
+      title: "Member Discount",
+      desc: "On every order over $130.00",
+      image: "/images/service-icon.png",
+      px: "-563px",
+    },
+    {
+      title: "Return Policy",
+      desc: "Support 24 hours a day",
+      image: "/images/service-icon.png",
+      px: "-788px",
+    },
+  ],
+  isScrolled: false,
   featured: true,
   newArrival: false,
   bestSellers: false,

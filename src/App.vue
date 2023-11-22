@@ -3,6 +3,9 @@
     <HeaderComponent />
   </header>
   <main>
+    <div id="rombo" @click="windowTop()" v-show="store.isScrolled">
+      xd
+    </div>
     <section id="jumbosello">
       <img src="/images/cms-banner-01.jpg" alt="temp">
     </section>
@@ -181,24 +184,24 @@
 <script>
 import { store } from './assets/data/store'
 import HeaderComponent from './components/HeaderComponent.vue'
-import LargeCard from './components/LargeCard.vue'
 import VerticalCard from './components/VerticalCard.vue'
 import ProductCard from './components/ProductCard.vue'
 import SliderQuotes from './components/SliderQuotes.vue'
 import BlogsCard from './components/BlogsCard.vue'
 import BrandCard from './components/BrandCard.vue'
 import FooterComponent from './components/FooterComponent.vue'
+import LargeCard from './components/LargeCard.vue'
   export default {
     name: 'App',
     components: {
       HeaderComponent,
-      LargeCard,
       VerticalCard,
       ProductCard,
       SliderQuotes,
       BlogsCard,
       BrandCard,
       FooterComponent,
+      LargeCard,
     },
     data(){
       return{
@@ -441,8 +444,24 @@ import FooterComponent from './components/FooterComponent.vue'
         store.slideTwoActive = false
         store.slideThreeActive = true
       },
+      scrollTop(){
+        if(window.scrollY >= 1000){
+          this.store.isScrolled = true
+        }else if(window.scrollY < 1000){
+            this.store.isScrolled = false
+        }
+      },
+      windowTop(){
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: "smooth"
+        });
+      }
+      
     },
     created(){
+      window.addEventListener('scroll', this.scrollTop)
       this.scrollBrandAutomatic()
     },
   }
@@ -457,6 +476,14 @@ import FooterComponent from './components/FooterComponent.vue'
         width: 100%;
         object-fit: contain;
       }
+    }
+    #rombo{
+      width: 30px;
+      height: 30px;
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      background-color: $palette_yellow;
     }
 
     .b-bottom{
