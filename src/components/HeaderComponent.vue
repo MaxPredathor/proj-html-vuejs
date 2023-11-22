@@ -41,7 +41,7 @@
                     <ul class="d-flex justify-content-evenly gap-1">
                         <li><i class="fa-solid fa-magnifying-glass"></i></li>
                         <li><i class="fa-regular fa-user"></i></li>
-                        <li><i class="fa-solid fa-bag-shopping"><span>(0)£0.00</span></i></li>
+                        <li><i class="fa-solid fa-bag-shopping"><span>(0)0.00€</span></i></li>
                     </ul>
                 </div>
             </div>

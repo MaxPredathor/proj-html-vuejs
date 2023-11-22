@@ -63,14 +63,14 @@ import { store } from '../assets/data/store'
                 
             }
             #retract{
-                width: 416px;
+                width: 415.99px;
                 height: 0px;
                 background-color: rgba(255, 255, 255, 0.2);
                 position: absolute;
                 bottom: 50%;
             }
             #expand{
-                width: 416px;
+                width: 415.99px;
                 height: 0px;
                 background-color: rgba(255, 255, 255, 0.2);
                 position: absolute;
@@ -80,7 +80,7 @@ import { store } from '../assets/data/store'
                 position: absolute;
                 bottom: 0%;
                 height: 70px;
-                width: 100%;
+                width: 415.99px;
                 background-color:  #170f1fbf;
 
                 h4{

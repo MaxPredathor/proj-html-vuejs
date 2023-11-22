@@ -61,6 +61,41 @@
         </div>
       </div>
     </section>
+    <section>
+      <div class="container">
+        <div class="position-relative mt-5 mb-3 d-flex justify-content-between flex-column align-items-center">
+          <h2 class="category">Our Product</h2>
+          <div class="small-border position-absolute"></div>
+          <div class="choice d-flex justify-content-evenly align-items-center">
+            <div id="featured" :class="{'is-active': store.featured}" @click="switchOffFlags(), store.featured = true">Featured</div>
+            <div id="arrival" :class="{'is-active': store.newArrival}" @click="switchOffFlags(), store.newArrival = true">New Arrival</div>
+            <div id="sellers" :class="{'is-active': store.bestSellers}" @click="switchOffFlags(), store.bestSellers = true">Best Sellers</div>
+          </div>
+        </div>
+        <div class="row d-flex overflow-x-scroll flex-nowrap mt-2" v-if="store.featured">  
+          <ProductCard v-for="item in store.featuredProducts"
+          :img="item.img"
+          :name="item.name"
+          :rate="item.rate"
+          :price="item.price"
+          :sale="item.sale"
+          :discount="item.discount"
+          :discPrize="item.discountedPrice"
+          />     
+        </div>
+        <div class="row d-flex overflow-x-scroll flex-nowrap mt-2" v-else-if="store.newArrival">  
+          <ProductCard v-for="item in store.newArrivalProducts"
+          :img="item.img"
+          :name="item.name"
+          :rate="item.rate"
+          :price="item.price"
+          :sale="item.sale"
+          :discount="item.discount"
+          :discPrize="item.discountedPrice"
+          />     
+        </div>
+      </div>
+    </section>
   </main>
 </template>
 
@@ -69,16 +104,25 @@ import { store } from './assets/data/store'
 import HeaderComponent from './components/HeaderComponent.vue'
 import LargeCard from './components/LargeCard.vue'
 import VerticalCard from './components/VerticalCard.vue'
+import ProductCard from './components/ProductCard.vue'
   export default {
     name: 'App',
     components: {
       HeaderComponent,
       LargeCard,
-      VerticalCard
+      VerticalCard,
+      ProductCard,
     },
     data(){
       return{
         store,
+      }
+    },
+    methods:{
+      switchOffFlags(){
+        store.featured = false
+        store.newArrival = false
+        store.bestSellers = false
       }
     },
   }
@@ -91,11 +135,54 @@ import VerticalCard from './components/VerticalCard.vue'
 
       img{
         width: 100%;
-        height: 870px;
         object-fit: contain;
       }
     }
 
+    .choice{
+      width: 500px;
+      color: white;
+      border: 1px solid $small_text;
+      text-align: center;
+      font-weight: bold;
+      font-size: 0.8em;
+      cursor: pointer;
+
+      .is-active{
+        color: $palette_yellow;
+      }
+
+      #featured{
+        padding: 20px 15px;
+        width: calc(100% / 3);
+
+        &:hover{
+        color: $palette_yellow;
+        transition: color 0.3s linear;
+      }
+      }
+      #sellers{
+        padding: 20px 15px;
+        width: calc(100% / 3);
+
+        &:hover{
+        color: $palette_yellow;
+        transition: color 0.3s linear;
+      }
+      }
+      #arrival{
+        padding: 20px 15px;
+        width: calc(100% / 3);
+        border-left: 1px solid $small_text;
+        border-right: 1px solid $small_text;
+
+        &:hover{
+        color: $palette_yellow;
+        transition: color 0.3s linear;
+      }
+      }
+
+    }
     .semi-card{
       display: flex;
       justify-content: space-evenly;
