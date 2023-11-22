@@ -58,7 +58,7 @@
       </div>
     </section>
     <section class="container position-relative">
-      <div class="row mt-5 mb-3 d-flex justify-content-between flex-column align-items-center">
+      <div class="row mt-5 mb-3 justify-content-between flex-column align-items-center">
         <h2 class="category">Our Product</h2>
         <div class="small-border position-absolute"></div>
         <div class="choice d-flex justify-content-evenly align-items-center">
@@ -67,7 +67,7 @@
           <div id="sellers" class="col-3" :class="{'is-active': store.bestSellers}" @click="switchOffFlags(), store.bestSellers = true">Best Sellers</div>
         </div>
       </div>
-      <div ref="slider" class="row d-flex overflow-hidden flex-nowrap mt-2" >  
+      <div ref="slider" class="row overflow-hidden flex-nowrap mt-2" >  
         <ProductCard v-for="item in store.featuredProducts" v-if="store.featured"
         :img="item.img"
         :name="item.name"
@@ -127,13 +127,23 @@
         :discount="item.discount"
         :discPrize="item.discountedPrice"
         />
-        <div id="prev" @click="scrollLeft(0, - 330)"></div>
-        <div id="next" @click="scrollRight(0, + 330)"></div>
+        <div id="prev" class="two" @click="scrollLeft(0, - 330)"></div>
+        <div id="next" class="two" @click="scrollRight(0, + 330)"></div>
       </div>
     </section>
-    <section class="container">
-      <div class="row">
-        
+    <section id="the-division" class="container position-relative">
+      <div class="row overflow-hidden flex-nowrap" ref="quotes">
+        <SliderQuotes v-for="item in store.parallaxSlider"
+        :name="item.name"
+        :position="item.position"
+        :img="item.image"
+        :quote="item.quote"
+        />
+      </div>
+      <div class="dot-container">
+        <div class="dot" @click="scrollQuotes(0, 0)"></div>
+        <div class="dot" @click="scrollQuotes(0, + 1325)"></div>
+        <div class="dot" @click="scrollQuotes(0, + 2700)"></div>
       </div>
     </section>
   </main>
@@ -145,6 +155,7 @@ import HeaderComponent from './components/HeaderComponent.vue'
 import LargeCard from './components/LargeCard.vue'
 import VerticalCard from './components/VerticalCard.vue'
 import ProductCard from './components/ProductCard.vue'
+import SliderQuotes from './components/SliderQuotes.vue'
   export default {
     name: 'App',
     components: {
@@ -152,6 +163,7 @@ import ProductCard from './components/ProductCard.vue'
       LargeCard,
       VerticalCard,
       ProductCard,
+      SliderQuotes,
     },
     data(){
       return{
@@ -214,7 +226,15 @@ import ProductCard from './components/ProductCard.vue'
           left: y,
           behavior : "smooth"
         });
-      }
+      },
+      scrollQuotes(y, x) {
+        const slider = this.$refs.quotes
+        slider.scrollTo({
+          top: y,
+          left: x,
+          behavior: "smooth"
+        });
+    },
     },
   }
 </script>
@@ -246,6 +266,9 @@ import ProductCard from './components/ProductCard.vue'
         transition: all 0.1s linear;
       }
     }
+    #prev.two{
+      top: 50%;
+    }
     #next{
       width: 32px;
       height: 32px;
@@ -260,6 +283,37 @@ import ProductCard from './components/ProductCard.vue'
       &:hover{
         background-position: right 81px;
         transition: all 0.1s linear;
+      }
+    }
+    #next.two{
+      top: 50%;
+    }
+    #the-division{
+      background-image: url(/images/parallax.jpg);
+      background-size: cover;
+      height: 500px;
+
+      .dot-container{
+        width: 60px;
+        height: 30px;
+        display: flex;
+        justify-content: space-evenly;
+        position: absolute;
+        left: 47%;
+        bottom: 3%;
+        .dot{
+          width: 10px;
+          height: 10px;
+          background-color: white;
+          overflow: hidden;
+          border-radius: 50%;
+
+          &:hover{
+            background-color: $palette_yellow;
+            transform: scale(120%);
+            transition: all 0.2s ease;
+          }
+        }
       }
     }
     .choice{
