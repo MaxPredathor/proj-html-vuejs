@@ -631,4 +631,30 @@ export const store = reactive({
       image: "/images/Rerum-facilis-est-et-exped.jpg",
     },
   ],
+  brandImages: [
+    {
+      image: "/images/brand-01.png",
+      name: "White Wolves",
+    },
+    {
+      image: "/images/brand-02.png",
+      name: "Fighters1",
+    },
+    {
+      image: "/images/brand-03.png",
+      name: "Tigers",
+    },
+    {
+      image: "/images/brand-04.png",
+      name: "Rhino",
+    },
+    {
+      image: "/images/brand-05.png",
+      name: "B2 Jersey",
+    },
+    {
+      image: "/images/brand-01.png",
+      name: "White Wolves",
+    },
+  ],
 });

@@ -146,7 +146,7 @@
         <div class="dot" :class="{'active-dot': store.slideThreeActive}" @click="scrollQuotes(0, + 2700), switchDotFlags3()"></div>
       </div>
     </section>
-    <section class="container position-relative">
+    <section class="container position-relative pb-3 b-bottom">
       <div class="row mt-5 mb-3 d-flex justify-content-between flex-column align-items-center">
         <h2 class="category">New Game Blogs</h2>
         <div class="small-border position-absolute"></div>
@@ -160,7 +160,17 @@
         />
         <div id="prev" class="three" @click="scrollLeftBlogs(0, - 440)"></div>
         <div id="next" class="three" @click="scrollRightBlogs(0, + 440)"></div>   
-      </div> 
+      </div>
+    </section>
+    <section class="container position-relative">
+      <div ref="brand" class="row overflow-hidden flex-nowrap mt-2">
+        <BrandCard v-for="item in store.brandImages"
+        :img="item.image"
+        :name="item.name"
+        />
+        <div id="prev" class="three" @click="scrollLeftBrand(0, - 284)"></div>
+        <div id="next" class="three" @click="scrollRightBrand(0, + 284)"></div> 
+      </div>
     </section>
   </main>
 </template>
@@ -173,6 +183,7 @@ import VerticalCard from './components/VerticalCard.vue'
 import ProductCard from './components/ProductCard.vue'
 import SliderQuotes from './components/SliderQuotes.vue'
 import BlogsCard from './components/BlogsCard.vue'
+import BrandCard from './components/BrandCard.vue'
   export default {
     name: 'App',
     components: {
@@ -182,6 +193,7 @@ import BlogsCard from './components/BlogsCard.vue'
       ProductCard,
       SliderQuotes,
       BlogsCard,
+      BrandCard,
     },
     data(){
       return{
@@ -189,6 +201,9 @@ import BlogsCard from './components/BlogsCard.vue'
         featuredCounter: 4,
         newArrivalCounter:4,
         bestSellersCounter: 4,
+        dealOfTheDayCounter: 4,
+        blogsCounter: 3,
+        brandCounter: 5,
       }
     },
     methods:{
@@ -203,7 +218,38 @@ import BlogsCard from './components/BlogsCard.vue'
           top: x,
           left: y,
           behavior : "smooth"
-      });
+        });
+        if(store.featured){
+            this.featuredCounter--
+            if(this.featuredCounter < 4){
+              this.featuredCounter = store.featuredProducts.length
+              slider.scrollBy({
+                top: 0,
+                left: + 1980,
+                behavior : "smooth"
+              });
+            }
+          }else if(store.newArrival){
+            this.newArrivalCounter--
+            if(this.newArrivalCounter < 4){
+              this.newArrivalCounter = store.newArrivalProducts.length
+              slider.scrollBy({
+                top: 0,
+                left: + 1980,
+                behavior : "smooth"
+              });
+            }
+          }else{
+            this.bestSellersCounter--
+            if(this.bestSellersCounter < 4){
+              this.bestSellersCounter = store.bestSellersProduct
+              slider.scrollBy({
+                top: 0,
+                left: + 1980,
+                behavior : "smooth"
+              });
+            }
+          }
       },
       scrollRight(x, y){
         const slider = this.$refs.slider
@@ -212,37 +258,37 @@ import BlogsCard from './components/BlogsCard.vue'
           left: y,
           behavior : "smooth"
         });
-        // if(store.featured){
-        //   this.featuredCounter++
-        //   if(this.featuredCounter > store.featuredProducts.length){
-        //     this.featuredCounter = 4
-        //     slider.scrollBy({
-        //       top: 0,
-        //       left: - 1980,
-        //       // behavior : "smooth"
-        //     });
-        //   }
-        // }else if(store.newArrival){
-        //   this.newArrivalCounter++
-        //   if(this.newArrivalCounter > store.newArrivalProducts.length){
-        //     this.newArrivalCounter = 4
-        //     slider.scrollBy({
-        //       top: 0,
-        //       left: - 1980,
-        //       // behavior : "smooth"
-        //     });
-        //   }
-        // }else{
-        //   this.bestSellersCounter++
-        //   if(this.bestSellersCounter > store.bestSellersProduct.length){
-        //     this.bestSellersCounter = 4
-        //     slider.scrollBy({
-        //       top: 0,
-        //       left: - 1980,
-        //       // behavior : "smooth"
-        //     });
-        //   }
-        // } 
+        if(store.featured){
+          this.featuredCounter++
+          if(this.featuredCounter > store.featuredProducts.length){
+            this.featuredCounter = 4
+            slider.scrollBy({
+              top: 0,
+              left: - 1980,
+              behavior : "smooth"
+            });
+          }
+        }else if(store.newArrival){
+          this.newArrivalCounter++
+          if(this.newArrivalCounter > store.newArrivalProducts.length){
+            this.newArrivalCounter = 4
+            slider.scrollBy({
+              top: 0,
+              left: - 1980,
+              behavior : "smooth"
+            });
+          }
+        }else{
+          this.bestSellersCounter++
+          if(this.bestSellersCounter > store.bestSellersProduct.length){
+            this.bestSellersCounter = 4
+            slider.scrollBy({
+              top: 0,
+              left: - 1980,
+              behavior : "smooth"
+            });
+          }
+        } 
       },
       scrollLeft2(x, y){
         const slider = this.$refs.slider2
@@ -251,6 +297,15 @@ import BlogsCard from './components/BlogsCard.vue'
           left: y,
           behavior : "smooth"
       });
+        this.dealOfTheDayCounter--
+        if(this.dealOfTheDayCounter < 4){
+          this.dealOfTheDayCounter = store.bestSellersProduct.length
+          slider.scrollBy({
+            top: 0,
+            left: + 1980,
+            behavior : "smooth"
+          });
+        }
       },
       scrollRight2(x, y){
         const slider = this.$refs.slider2
@@ -259,6 +314,15 @@ import BlogsCard from './components/BlogsCard.vue'
           left: y,
           behavior : "smooth"
         });
+          this.dealOfTheDayCounter++
+          if(this.dealOfTheDayCounter > store.bestSellersProduct.length){
+            this.dealOfTheDayCounter = 4
+            slider.scrollBy({
+              top: 0,
+              left: - 1980,
+              behavior : "smooth"
+            });
+          } 
       },
       scrollLeftBlogs(x, y){
         const slider = this.$refs.blogs
@@ -266,7 +330,16 @@ import BlogsCard from './components/BlogsCard.vue'
           top: x,
           left: y,
           behavior : "smooth"
-      });
+        });
+        this.blogsCounter--
+        if(this.blogsCounter < 3){
+          this.blogsCounter = store.gameBlogs.length
+          slider.scrollBy({
+            top: 0,
+            left: + 3100,
+            behavior : "smooth"
+          });
+        }
       },
       scrollRightBlogs(x, y){
         const slider = this.$refs.blogs
@@ -275,14 +348,78 @@ import BlogsCard from './components/BlogsCard.vue'
           left: y,
           behavior : "smooth"
         });
+        this.blogsCounter++
+        if(this.blogsCounter > store.gameBlogs.length){
+          this.blogsCounter = 3
+          slider.scrollBy({
+            top: 0,
+            left: - 3100,
+            behavior : "smooth"
+          });
+        } 
       },  
-      scrollQuotes(y, x) {
+      scrollQuotes(y, x){
         const slider = this.$refs.quotes
         slider.scrollTo({
           top: y,
           left: x,
           behavior: "smooth"
         });
+      },
+      scrollLeftBrand(x, y){
+        const slider = this.$refs.brand
+        slider.scrollBy({
+          top: x,
+          left: y,
+          behavior : "smooth"
+        });
+        this.brandCounter--
+        if(this.brandCounter < 5){
+          this.brandCounter = store.brandImages.length
+          slider.scrollBy({
+            top: 0,
+            left: + 1200,
+            behavior : "smooth"
+          });
+        }
+      },
+      scrollRightBrand(x, y){
+        const slider = this.$refs.brand
+        slider.scrollBy({
+          top: x,
+          left: y,
+          behavior : "smooth"
+        });
+        this.brandCounter++
+        if(this.brandCounter > store.brandImages.length){
+          this.brandCounter = 5
+          slider.scrollBy({
+            top: 0,
+            left: - 1200,
+            behavior : "smooth"
+          });
+        } 
+      }, 
+      scrollBrandAutomatic(){
+        setInterval(() =>{
+          const slider = this.$refs.brand
+          slider.scrollBy({
+            top: 0,
+            left: + 400,
+            behavior : "smooth"
+          });
+          this.brandCounter++
+          if(this.brandCounter > store.brandImages.length){
+            this.brandCounter = 5
+            slider.scrollBy({
+              top: 0,
+              left: - 1200,
+              behavior : "smooth"
+            });
+          } 
+        }, 2000)
+        
+        
       },
       switchDotFlags(){
         store.slideOneActive = true
@@ -300,6 +437,9 @@ import BlogsCard from './components/BlogsCard.vue'
         store.slideThreeActive = true
       },
     },
+    created(){
+      this.scrollBrandAutomatic()
+    },
   }
 </script>
 
@@ -312,6 +452,10 @@ import BlogsCard from './components/BlogsCard.vue'
         width: 100%;
         object-fit: contain;
       }
+    }
+
+    .b-bottom{
+      border-bottom: 1px solid #9f9baf73;
     }
 
     #prev{
