@@ -6,94 +6,134 @@
     <section id="jumbosello">
       <img src="/images/cms-banner-01.jpg" alt="temp">
     </section>
-    <section>
-      <div class="container">
-        <div class="row">
-          <div id="delivery" class="col-3 semi-card">
-            <div class="semi-card-img delivery"></div> 
-            <div class="text my-border">
-              <h6 class="ps-4">Free Delivery</h6>
-              <p class="ps-4">Free Shipping On All Order</p>
-            </div>
-          </div>
-          <div id="money" class="col-3 semi-card">
-            <div class="semi-card-img money"></div> 
-            <div class="text my-border">
-              <h6 class="ps-4">Money Return</h6>
-              <p class="ps-4">Back Guarantee in 7 days</p>
-            </div>
-          </div>
-          <div id="discount" class="col-3 semi-card">
-            <div class="semi-card-img discount"></div> 
-            <div class="text my-border">
-              <h6 class="ps-4">Member Discount</h6>
-              <p class="ps-4">On every order over $130.00</p>
-            </div>
-          </div>
-          <div id="return" class="col-3 semi-card">
-            <div class="semi-card-img return"></div> 
-            <div class="text">
-              <h6 class="ps-4">Return Policy</h6>
-              <p class="ps-4">Support 24 hours a day</p>
-            </div>
+    <section class="container">
+      <div class="row">
+        <div id="delivery" class="col-3 semi-card">
+          <div class="semi-card-img delivery"></div> 
+          <div class="text my-border">
+            <h6 class="ps-4">Free Delivery</h6>
+            <p class="ps-4">Free Shipping On All Order</p>
           </div>
         </div>
-        <div class="row">         
-            <LargeCard v-for="card in store.largeCard"
-            :title="card.title"
-            :tag="card.tag"
-            :img="card.img"
-            />
+        <div id="money" class="col-3 semi-card">
+          <div class="semi-card-img money"></div> 
+          <div class="text my-border">
+            <h6 class="ps-4">Money Return</h6>
+            <p class="ps-4">Back Guarantee in 7 days</p>
+          </div>
+        </div>
+        <div id="discount" class="col-3 semi-card">
+          <div class="semi-card-img discount"></div> 
+          <div class="text my-border">
+            <h6 class="ps-4">Member Discount</h6>
+            <p class="ps-4">On every order over $130.00</p>
+          </div>
+        </div>
+        <div id="return" class="col-3 semi-card">
+          <div class="semi-card-img return"></div> 
+          <div class="text">
+            <h6 class="ps-4">Return Policy</h6>
+            <p class="ps-4">Support 24 hours a day</p>
+          </div>
         </div>
       </div>
-    </section>
-    <section>
-      <div class="container">
-        <div class="position-relative mt-5 mb-3">
-          <h2 class="category">Special Category</h2>
-          <div class="small-border position-absolute"></div>
-        </div>
-        <div class="row">
-          <VerticalCard v-for="item in store.verticalCard"
-          :img="item.image"
-          :titolo="item.titolo"
+      <div class="row">         
+          <LargeCard v-for="card in store.largeCard"
+          :title="card.title"
+          :tag="card.tag"
+          :img="card.img"
           />
-        </div>
       </div>
     </section>
-    <section>
-      <div class="container">
-        <div class="position-relative mt-5 mb-3 d-flex justify-content-between flex-column align-items-center">
-          <h2 class="category">Our Product</h2>
-          <div class="small-border position-absolute"></div>
-          <div class="choice d-flex justify-content-evenly align-items-center">
-            <div id="featured" :class="{'is-active': store.featured}" @click="switchOffFlags(), store.featured = true">Featured</div>
-            <div id="arrival" :class="{'is-active': store.newArrival}" @click="switchOffFlags(), store.newArrival = true">New Arrival</div>
-            <div id="sellers" :class="{'is-active': store.bestSellers}" @click="switchOffFlags(), store.bestSellers = true">Best Sellers</div>
-          </div>
+    <section class="container">
+      <div class="position-relative mt-5 mb-3">
+        <h2 class="category">Special Category</h2>
+        <div class="small-border position-absolute"></div>
+      </div>
+      <div class="row">
+        <VerticalCard v-for="item in store.verticalCard"
+        :img="item.image"
+        :titolo="item.titolo"
+        />
+      </div>
+    </section>
+    <section class="container position-relative">
+      <div class="row mt-5 mb-3 d-flex justify-content-between flex-column align-items-center">
+        <h2 class="category">Our Product</h2>
+        <div class="small-border position-absolute"></div>
+        <div class="choice d-flex justify-content-evenly align-items-center">
+          <div id="featured" class="col-3" :class="{'is-active': store.featured}" @click="switchOffFlags(), store.featured = true">Featured</div>
+          <div id="arrival" class="col-3" :class="{'is-active': store.newArrival}" @click="switchOffFlags(), store.newArrival = true">New Arrival</div>
+          <div id="sellers" class="col-3" :class="{'is-active': store.bestSellers}" @click="switchOffFlags(), store.bestSellers = true">Best Sellers</div>
         </div>
-        <div class="row d-flex overflow-x-scroll flex-nowrap mt-2" v-if="store.featured">  
-          <ProductCard v-for="item in store.featuredProducts"
-          :img="item.img"
-          :name="item.name"
-          :rate="item.rate"
-          :price="item.price"
-          :sale="item.sale"
-          :discount="item.discount"
-          :discPrize="item.discountedPrice"
-          />     
+      </div>
+      <div ref="slider" class="row d-flex overflow-hidden flex-nowrap mt-2" >  
+        <ProductCard v-for="item in store.featuredProducts" v-if="store.featured"
+        :img="item.img"
+        :name="item.name"
+        :rate="item.rate"
+        :price="item.price"
+        :sale="item.sale"
+        :discount="item.discount"
+        :discPrize="item.discountedPrice"
+        />
+        <ProductCard v-for="item in store.newArrivalProducts" v-else-if="store.newArrival"
+        :img="item.img"
+        :name="item.name"
+        :rate="item.rate"
+        :price="item.price"
+        :sale="item.sale"
+        :discount="item.discount"
+        :discPrize="item.discountedPrice"
+        />
+        <ProductCard v-for="item in store.bestSellersProduct" v-else-if="store.bestSellers"
+        :img="item.img"
+        :name="item.name"
+        :rate="item.rate"
+        :price="item.price"
+        :sale="item.sale"
+        :discount="item.discount"
+        :discPrize="item.discountedPrice"
+        />
+        <div id="prev" @click="scrollLeft(0, - 330)"></div>
+        <div id="next" @click="scrollRight(0, + 330)"></div>       
+      </div>
+      <div class="row">
+        <LargeCard v-for="card in store.largeCard2"
+          :title="card.title"
+          :tag="card.tag"
+          :img="card.img"
+          />
+      </div> 
+    </section>
+    <section class="container position-relative">
+      <div class="row mt-5 mb-3 d-flex justify-content-between flex-column align-items-center">
+        <h2 class="category">Deal Of The Day</h2>
+        <div class="small-border position-absolute"></div>
+        <div class="choice d-flex justify-content-evenly align-items-center">
+          <div class="col-3 p-3">days</div>
+          <div class="col-3 p-3">hours</div>
+          <div class="col-3 p-3">mins</div>
+          <div class="col-3 p-3">secs</div>
         </div>
-        <div class="row d-flex overflow-x-scroll flex-nowrap mt-2" v-else-if="store.newArrival">  
-          <ProductCard v-for="item in store.newArrivalProducts"
-          :img="item.img"
-          :name="item.name"
-          :rate="item.rate"
-          :price="item.price"
-          :sale="item.sale"
-          :discount="item.discount"
-          :discPrize="item.discountedPrice"
-          />     
-        </div>
+      </div>
+      <div ref="slider" class="row d-flex overflow-hidden flex-nowrap mt-5" >  
+        <ProductCard v-for="item in store.bestSellersProduct"
+        :img="item.img"
+        :name="item.name"
+        :rate="item.rate"
+        :price="item.price"
+        :sale="item.sale"
+        :discount="item.discount"
+        :discPrize="item.discountedPrice"
+        />
+        <div id="prev" @click="scrollLeft(0, - 330)"></div>
+        <div id="next" @click="scrollRight(0, + 330)"></div>
+      </div>
+    </section>
+    <section class="container">
+      <div class="row">
+        
       </div>
     </section>
   </main>
@@ -116,6 +156,9 @@ import ProductCard from './components/ProductCard.vue'
     data(){
       return{
         store,
+        featuredCounter: 4,
+        newArrivalCounter:4,
+        bestSellersCounter: 4,
       }
     },
     methods:{
@@ -123,6 +166,54 @@ import ProductCard from './components/ProductCard.vue'
         store.featured = false
         store.newArrival = false
         store.bestSellers = false
+      },
+      scrollLeft(x, y){
+        
+        const slider = this.$refs.slider
+        slider.scrollBy({
+          top: x,
+          left: y,
+          behavior : "smooth"
+      });
+      },
+      scrollRight(x, y){
+        const slider = this.$refs.slider
+        if(store.featured){
+          this.featuredCounter++
+          if(this.featuredCounter > store.featuredProducts.length){
+            this.featuredCounter = 4
+            slider.scrollBy({
+              top: 0,
+              left: - 1980,
+              // behavior : "smooth"
+            });
+          }
+        }else if(store.newArrival){
+          this.newArrivalCounter++
+          if(this.newArrivalCounter > store.newArrivalProducts.length){
+            this.newArrivalCounter = 4
+            slider.scrollBy({
+              top: 0,
+              left: - 1980,
+              // behavior : "smooth"
+            });
+          }
+        }else{
+          this.bestSellersCounter++
+          if(this.bestSellersCounter > store.bestSellersProduct.length){
+            this.bestSellersCounter = 4
+            slider.scrollBy({
+              top: 0,
+              left: - 1980,
+              // behavior : "smooth"
+            });
+          }
+        }
+        slider.scrollBy({
+          top: x,
+          left: y,
+          behavior : "smooth"
+        });
       }
     },
   }
@@ -139,21 +230,54 @@ import ProductCard from './components/ProductCard.vue'
       }
     }
 
+    #prev{
+      width: 32px;
+      height: 32px;
+      background-image: url(/images/arrow.png);
+      background-position: left 32px;
+      position: absolute;
+      top: 32%;
+      left: -25px;
+      cursor: pointer;
+      transition: background-position 0.1s linear;
+
+      &:hover{
+        background-position: left 81px;
+        transition: all 0.1s linear;
+      }
+    }
+    #next{
+      width: 32px;
+      height: 32px;
+      background-image: url(/images/arrow.png);
+      background-position: right 32px;
+      position: absolute;
+      top: 32%;
+      right: -25px;
+      cursor: pointer;
+      transition: background-position 0.1s linear;
+
+      &:hover{
+        background-position: right 81px;
+        transition: all 0.1s linear;
+      }
+    }
     .choice{
       width: 500px;
       color: white;
-      border: 1px solid $small_text;
+      border: 1px solid #9f9baf73;
       text-align: center;
       font-weight: bold;
       font-size: 0.8em;
       cursor: pointer;
+      padding: 0;
 
       .is-active{
         color: $palette_yellow;
       }
 
       #featured{
-        padding: 20px 15px;
+        padding: 15px 15px;
         width: calc(100% / 3);
 
         &:hover{
@@ -162,7 +286,7 @@ import ProductCard from './components/ProductCard.vue'
       }
       }
       #sellers{
-        padding: 20px 15px;
+        padding: 15px 15px;
         width: calc(100% / 3);
 
         &:hover{
@@ -171,10 +295,10 @@ import ProductCard from './components/ProductCard.vue'
       }
       }
       #arrival{
-        padding: 20px 15px;
+        padding: 15px 15px;
         width: calc(100% / 3);
-        border-left: 1px solid $small_text;
-        border-right: 1px solid $small_text;
+        border-left: 1px solid #9f9baf73;
+        border-right: 1px solid #9f9baf73;
 
         &:hover{
         color: $palette_yellow;

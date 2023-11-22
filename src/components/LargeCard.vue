@@ -53,7 +53,6 @@
             }
             .non-entra {
                 width: 200px;
-                height: 40px;
                 transform: skew(-20deg);
                 background: $palette_yellow;
                 z-index: 1 !important;
