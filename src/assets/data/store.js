@@ -255,6 +255,9 @@ export const store = reactive({
   featured: true,
   newArrival: false,
   bestSellers: false,
+  slideOneActive: true,
+  slideTwoActive: false,
+  slideThreeActive: false,
   featuredProducts: [
     {
       img: "/images/02-327x327.jpg",
@@ -564,6 +567,68 @@ export const store = reactive({
       image: "/images/zTipo.jpg",
       quote:
         '"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English."',
+    },
+  ],
+  gameBlogs: [
+    {
+      date: "Jan 18, 2021",
+      comments: 0,
+      desc: "Nasual risus suscipit Lorem Ipsus is simply text",
+      image: "/images/Nisi-ut-aliquid-ex-ea-com.jpg",
+    },
+    {
+      date: "May 30, 2021",
+      comments: 0,
+      desc: "Nasual risus suscipit Lorem Ipsus is simply text",
+      image: "/images/Architecto-beatae-vitae-dicta.jpg",
+    },
+    {
+      date: "Apr 13, 2021",
+      comments: 0,
+      desc: "Nasual risus suscipit Lorem Ipsus is simply text",
+      image: "/images/At-vero-eos-et-accusamus.jpg",
+    },
+    {
+      date: "Feb 13, 2021",
+      comments: 0,
+      desc: "Nasual risus suscipit Lorem Ipsus is simply text",
+      image: "/images/Blandit-praesen-volupta.jpg",
+    },
+    {
+      date: "Feb 4, 2021",
+      comments: 0,
+      desc: "Nasual risus suscipit Lorem Ipsus is simply text",
+      image: "/images/Consequunt-magni-dolores.jpg",
+    },
+    {
+      date: "Feb 4, 2021",
+      comments: 0,
+      desc: "Nasual risus suscipit Lorem Ipsus is simply text",
+      image: "/images/Et-quasi-architecto-beate.jpg",
+    },
+    {
+      date: "Oct 31, 2021",
+      comments: 0,
+      desc: "Nasual risus suscipit Lorem Ipsus is simply text",
+      image: "/images/Illo-inventore-veritatis-quasi.jpg",
+    },
+    {
+      date: "Dec 10, 2021",
+      comments: 0,
+      desc: "Nasual risus suscipit Lorem Ipsus is simply text",
+      image: "/images/Laborum-et-dolor-fuga-Et.jpg",
+    },
+    {
+      date: "Jan 4, 2021",
+      comments: 0,
+      desc: "Nasual risus suscipit Lorem Ipsus is simply text",
+      image: "/images/Omnis-iste-natus-error-sit.jpg",
+    },
+    {
+      date: "Jan 4, 2021",
+      comments: 0,
+      desc: "Nasual risus suscipit Lorem Ipsus is simply text",
+      image: "/images/Rerum-facilis-est-et-exped.jpg",
     },
   ],
 });

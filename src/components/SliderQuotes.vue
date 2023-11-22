@@ -49,6 +49,7 @@
             }
         }
         p{
+            width: 80%;
             padding: 10px 0;
             color: #919199;
             font-size: 0.8em;

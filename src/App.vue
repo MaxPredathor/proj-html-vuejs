@@ -107,7 +107,7 @@
       </div> 
     </section>
     <section class="container position-relative">
-      <div class="row mt-5 mb-3 d-flex justify-content-between flex-column align-items-center">
+      <div class="row mt-5 mb-3 justify-content-between flex-column align-items-center">
         <h2 class="category">Deal Of The Day</h2>
         <div class="small-border position-absolute"></div>
         <div class="choice d-flex justify-content-evenly align-items-center">
@@ -117,7 +117,7 @@
           <div class="col-3 p-3">secs</div>
         </div>
       </div>
-      <div ref="slider" class="row d-flex overflow-hidden flex-nowrap mt-5" >  
+      <div ref="slider2" class="row overflow-hidden flex-nowrap mt-5" >  
         <ProductCard v-for="item in store.bestSellersProduct"
         :img="item.img"
         :name="item.name"
@@ -127,8 +127,8 @@
         :discount="item.discount"
         :discPrize="item.discountedPrice"
         />
-        <div id="prev" class="two" @click="scrollLeft(0, - 330)"></div>
-        <div id="next" class="two" @click="scrollRight(0, + 330)"></div>
+        <div id="prev" class="two" @click="scrollLeft2(0, - 330)"></div>
+        <div id="next" class="two" @click="scrollRight2(0, + 330)"></div>
       </div>
     </section>
     <section id="the-division" class="container position-relative">
@@ -141,10 +141,26 @@
         />
       </div>
       <div class="dot-container">
-        <div class="dot" @click="scrollQuotes(0, 0)"></div>
-        <div class="dot" @click="scrollQuotes(0, + 1325)"></div>
-        <div class="dot" @click="scrollQuotes(0, + 2700)"></div>
+        <div class="dot" :class="{'active-dot': store.slideOneActive}" @click="scrollQuotes(0, 0), switchDotFlags()"></div>
+        <div class="dot" :class="{'active-dot': store.slideTwoActive}" @click="scrollQuotes(0, + 1325), switchDotFlags2()"></div>
+        <div class="dot" :class="{'active-dot': store.slideThreeActive}" @click="scrollQuotes(0, + 2700), switchDotFlags3()"></div>
       </div>
+    </section>
+    <section class="container position-relative">
+      <div class="row mt-5 mb-3 d-flex justify-content-between flex-column align-items-center">
+        <h2 class="category">New Game Blogs</h2>
+        <div class="small-border position-absolute"></div>
+      </div>
+      <div ref="blogs" class="row overflow-hidden flex-nowrap mt-2"> 
+        <BlogsCard v-for="item in store.gameBlogs" 
+        :date="item.date"
+        :comments="item.comments"
+        :desc="item.desc"
+        :img="item.image"
+        />
+        <div id="prev" class="three" @click="scrollLeftBlogs(0, - 440)"></div>
+        <div id="next" class="three" @click="scrollRightBlogs(0, + 440)"></div>   
+      </div> 
     </section>
   </main>
 </template>
@@ -156,6 +172,7 @@ import LargeCard from './components/LargeCard.vue'
 import VerticalCard from './components/VerticalCard.vue'
 import ProductCard from './components/ProductCard.vue'
 import SliderQuotes from './components/SliderQuotes.vue'
+import BlogsCard from './components/BlogsCard.vue'
   export default {
     name: 'App',
     components: {
@@ -164,6 +181,7 @@ import SliderQuotes from './components/SliderQuotes.vue'
       VerticalCard,
       ProductCard,
       SliderQuotes,
+      BlogsCard,
     },
     data(){
       return{
@@ -180,7 +198,6 @@ import SliderQuotes from './components/SliderQuotes.vue'
         store.bestSellers = false
       },
       scrollLeft(x, y){
-        
         const slider = this.$refs.slider
         slider.scrollBy({
           top: x,
@@ -190,43 +207,75 @@ import SliderQuotes from './components/SliderQuotes.vue'
       },
       scrollRight(x, y){
         const slider = this.$refs.slider
-        if(store.featured){
-          this.featuredCounter++
-          if(this.featuredCounter > store.featuredProducts.length){
-            this.featuredCounter = 4
-            slider.scrollBy({
-              top: 0,
-              left: - 1980,
-              // behavior : "smooth"
-            });
-          }
-        }else if(store.newArrival){
-          this.newArrivalCounter++
-          if(this.newArrivalCounter > store.newArrivalProducts.length){
-            this.newArrivalCounter = 4
-            slider.scrollBy({
-              top: 0,
-              left: - 1980,
-              // behavior : "smooth"
-            });
-          }
-        }else{
-          this.bestSellersCounter++
-          if(this.bestSellersCounter > store.bestSellersProduct.length){
-            this.bestSellersCounter = 4
-            slider.scrollBy({
-              top: 0,
-              left: - 1980,
-              // behavior : "smooth"
-            });
-          }
-        }
+        slider.scrollBy({
+          top: x,
+          left: y,
+          behavior : "smooth"
+        });
+        // if(store.featured){
+        //   this.featuredCounter++
+        //   if(this.featuredCounter > store.featuredProducts.length){
+        //     this.featuredCounter = 4
+        //     slider.scrollBy({
+        //       top: 0,
+        //       left: - 1980,
+        //       // behavior : "smooth"
+        //     });
+        //   }
+        // }else if(store.newArrival){
+        //   this.newArrivalCounter++
+        //   if(this.newArrivalCounter > store.newArrivalProducts.length){
+        //     this.newArrivalCounter = 4
+        //     slider.scrollBy({
+        //       top: 0,
+        //       left: - 1980,
+        //       // behavior : "smooth"
+        //     });
+        //   }
+        // }else{
+        //   this.bestSellersCounter++
+        //   if(this.bestSellersCounter > store.bestSellersProduct.length){
+        //     this.bestSellersCounter = 4
+        //     slider.scrollBy({
+        //       top: 0,
+        //       left: - 1980,
+        //       // behavior : "smooth"
+        //     });
+        //   }
+        // } 
+      },
+      scrollLeft2(x, y){
+        const slider = this.$refs.slider2
+        slider.scrollBy({
+          top: x,
+          left: y,
+          behavior : "smooth"
+      });
+      },
+      scrollRight2(x, y){
+        const slider = this.$refs.slider2
         slider.scrollBy({
           top: x,
           left: y,
           behavior : "smooth"
         });
       },
+      scrollLeftBlogs(x, y){
+        const slider = this.$refs.blogs
+        slider.scrollBy({
+          top: x,
+          left: y,
+          behavior : "smooth"
+      });
+      },
+      scrollRightBlogs(x, y){
+        const slider = this.$refs.blogs
+        slider.scrollBy({
+          top: x,
+          left: y,
+          behavior : "smooth"
+        });
+      },  
       scrollQuotes(y, x) {
         const slider = this.$refs.quotes
         slider.scrollTo({
@@ -234,7 +283,22 @@ import SliderQuotes from './components/SliderQuotes.vue'
           left: x,
           behavior: "smooth"
         });
-    },
+      },
+      switchDotFlags(){
+        store.slideOneActive = true
+        store.slideTwoActive = false
+        store.slideThreeActive = false
+      },
+      switchDotFlags2(){
+        store.slideOneActive = false
+        store.slideTwoActive = true
+        store.slideThreeActive = false
+      },
+      switchDotFlags3(){
+        store.slideOneActive = false
+        store.slideTwoActive = false
+        store.slideThreeActive = true
+      },
     },
   }
 </script>
@@ -269,6 +333,9 @@ import SliderQuotes from './components/SliderQuotes.vue'
     #prev.two{
       top: 50%;
     }
+    #prev.three{
+      top: 45%;
+    }
     #next{
       width: 32px;
       height: 32px;
@@ -287,6 +354,9 @@ import SliderQuotes from './components/SliderQuotes.vue'
     }
     #next.two{
       top: 50%;
+    }
+    #next.three{
+      top: 45%;
     }
     #the-division{
       background-image: url(/images/parallax.jpg);
@@ -310,10 +380,16 @@ import SliderQuotes from './components/SliderQuotes.vue'
 
           &:hover{
             background-color: $palette_yellow;
-            transform: scale(120%);
+            transform: scale(110%);
             transition: all 0.2s ease;
           }
         }
+        .active-dot{
+          background-color: $palette_yellow;
+          width: 12px;
+          height: 12px;
+          padding-bottom: 5px;
+        } 
       }
     }
     .choice{
