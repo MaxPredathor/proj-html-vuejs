@@ -657,4 +657,112 @@ export const store = reactive({
       name: "White Wolves",
     },
   ],
+  footer: [
+    {
+      address: [
+        {
+          name: "Address Info",
+          title: true,
+          url: "#",
+        },
+        {
+          name: "60 29th Street San Francisco, CA 94110 507-Union Trade Center, United States of America",
+          title: false,
+          url: "#",
+        },
+        {
+          name: "(+00) 123-456-789",
+          title: false,
+          url: "#",
+        },
+        {
+          name: "demo@example.com",
+          title: false,
+          url: "#",
+        },
+      ],
+    },
+    {
+      information: [
+        {
+          name: "Information",
+          title: true,
+          url: "#",
+        },
+        {
+          name: "Bookmark",
+          title: false,
+          url: "https://capricathemes.com/wordpress/WCM04/WCM040086/bookmark/",
+        },
+        {
+          name: "Features",
+          title: false,
+          url: "https://capricathemes.com/wordpress/WCM04/WCM040086/features/",
+        },
+        {
+          name: "Sitemap",
+          title: false,
+          url: "https://capricathemes.com/wordpress/WCM04/WCM040086/sitemap/",
+        },
+        {
+          name: "Lists",
+          title: false,
+          url: "https://capricathemes.com/wordpress/WCM04/WCM040086/lists/",
+        },
+        {
+          name: "Contact Us",
+          title: false,
+          url: "https://capricathemes.com/wordpress/WCM04/WCM040086/contact-us/",
+        },
+      ],
+    },
+    {
+      extras: [
+        {
+          name: "Extras",
+          title: true,
+          url: "#",
+        },
+        {
+          name: "My Account",
+          title: false,
+          url: "https://capricathemes.com/wordpress/WCM04/WCM040086/my-account/",
+        },
+        {
+          name: "Delivery",
+          title: false,
+          url: "#",
+        },
+        {
+          name: "Cart",
+          title: false,
+          url: "https://capricathemes.com/wordpress/WCM04/WCM040086/cart/",
+        },
+        {
+          name: "Terms Condition",
+          title: false,
+          url: "https://capricathemes.com/wordpress/WCM04/WCM040086/terms-conditions/",
+        },
+        {
+          name: "About Us",
+          title: false,
+          url: "https://capricathemes.com/wordpress/WCM04/WCM040086/about-us/",
+        },
+      ],
+    },
+    {
+      newsletter: [
+        {
+          name: "Our Newsletter",
+          title: true,
+          url: "#",
+        },
+        {
+          name: "There are many variations of passages of form humour or randomised",
+          title: false,
+          url: "#",
+        },
+      ],
+    },
+  ],
 });

@@ -168,10 +168,13 @@
         :img="item.image"
         :name="item.name"
         />
-        <div id="prev" class="three" @click="scrollLeftBrand(0, - 284)"></div>
-        <div id="next" class="three" @click="scrollRightBrand(0, + 284)"></div> 
+        <div id="prev" @click="scrollLeftBrand(0, - 284)"></div>
+        <div id="next" @click="scrollRightBrand(0, + 284)"></div> 
       </div>
     </section>
+    <footer>
+      <FooterComponent />
+    </footer>
   </main>
 </template>
 
@@ -184,6 +187,7 @@ import ProductCard from './components/ProductCard.vue'
 import SliderQuotes from './components/SliderQuotes.vue'
 import BlogsCard from './components/BlogsCard.vue'
 import BrandCard from './components/BrandCard.vue'
+import FooterComponent from './components/FooterComponent.vue'
   export default {
     name: 'App',
     components: {
@@ -194,6 +198,7 @@ import BrandCard from './components/BrandCard.vue'
       SliderQuotes,
       BlogsCard,
       BrandCard,
+      FooterComponent,
     },
     data(){
       return{

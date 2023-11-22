@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    export default {
+    export default { 
         name: 'BrandCard',
         props:{
             img: String,
@@ -22,6 +22,7 @@
         img{
             width: 60%;
             padding: 20px 0;
+            margin-bottom: 20px;
         }
     }
 </style>
