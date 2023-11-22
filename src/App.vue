@@ -132,7 +132,7 @@
       </div>
     </section>
     <section id="the-division" class="container position-relative">
-      <div class="row overflow-hidden flex-nowrap" ref="quotes">
+      <div id="grab" class="row overflow-hidden flex-nowrap" ref="quotes">
         <SliderQuotes v-for="item in store.parallaxSlider"
         :name="item.name"
         :position="item.position"

@@ -1,6 +1,8 @@
 <template>
     <div class="col-6 position-relative">
-        <img :src="img" :alt="title">
+        <div class="overflow-hidden">
+            <img :src="img" :alt="title">
+        </div>
         <div id="over-image">
             <h4 class="non-entra">{{ tag }}</h4>
             <h2 class="text-light">{{ title }}</h2>
@@ -35,6 +37,12 @@
 
         img{
             width: 100%;
+            transition: all 2s linear;
+
+            &:hover{
+                transform: scale(110%);
+                transition: all 2s linear;
+            }
         }
 
         #over-image{
