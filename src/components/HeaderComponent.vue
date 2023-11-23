@@ -1,17 +1,17 @@
 <template>
-    <div class="wrapper">
+    <div class="wrapper position-fixed bg-purple sticky-top">
         <div class="container">
             <div id="wishlist" class="row d-flex justify-content-between align-content-center py-3">
                 <div class="col-6 col-md-3 col-lg-3 ">
                     <ul class="d-flex justify-content-between align-content-center gap-1">
-                        <li>Wishlist(0)</li>
-                        <span class="line-separator">|</span>
-                        <li>Need Help ? <i class="fa-solid fa-chevron-down"></i></li>
+                        <li class="pt-3">Wishlist(0)</li>
+                        <span class="line-separator pt-3">|</span>
+                        <li class="pt-3">Need Help ? <i class="fa-solid fa-chevron-down"></i></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md-3 col-lg-3 ">
                     <ul class="d-flex">
-                        <li>Call 24/7 .800-8764-987</li>
+                        <li class="pt-3">Call 24/7 .800-8764-987</li>
                     </ul>
                 </div>
             </div>
@@ -39,9 +39,9 @@
                 </div>
                 <div class="col-3 col-md-2 col-lg-3">
                     <ul class="d-flex justify-content-evenly gap-1">
-                        <li><i class="fa-solid fa-magnifying-glass"></i></li>
-                        <li><i class="fa-regular fa-user"></i></li>
-                        <li><i class="fa-solid fa-bag-shopping"><span>(0)0.00€</span></i></li>
+                        <li><i class="fa-solid fa-magnifying-glass pt-4"></i></li>
+                        <li><i class="fa-regular fa-user pt-4"></i></li>
+                        <li class="w-25"><i class="fa-solid fa-bag-shopping pt-4"><span>(0)0.00€</span></i></li>
                     </ul>
                 </div>
             </div>
@@ -85,6 +85,11 @@ import { store } from '../assets/data/store'
                 }
             }
         }
+    }
+    .bg-purple{
+        background-color: $palette_purple;
+        z-index: 100;
+        width: 100vw;
     }
 
     a{

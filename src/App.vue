@@ -26,6 +26,7 @@
         delay: 2000,
         disableOnInteraction: false,
         pauseOnMouseEnter: false,
+        pauseOnMouseEnter: true,
       }"
       :grabCursor="true"
       :cubeEffect="{
@@ -573,7 +574,7 @@ import LargeCard from './components/LargeCard.vue'
 <style lang="scss" scoped>
 @use './assets/styles/partials/variables' as *;  
     .section-carosello{
-      margin-top: 40px;
+      margin-top: 200px;
       margin-left: 10%;
       margin-right: 10%;
       margin-bottom: 80px;
@@ -669,6 +670,7 @@ import LargeCard from './components/LargeCard.vue'
       border: 2px solid black;
       transition: all 0.5s linear;
       animation: outline 2s infinite;
+      cursor: pointer;
 
       i{
         transform: rotate(-45deg);
