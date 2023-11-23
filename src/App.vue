@@ -664,8 +664,8 @@ import LargeCard from './components/LargeCard.vue'
       height: 30px;
       transform: rotate(45deg);
       position: fixed;
-      bottom: 10px;
-      right: 10px;
+      bottom: 20px;
+      right: 20px;
       background-color: $palette_yellow;
       border: 2px solid black;
       transition: all 0.5s linear;
