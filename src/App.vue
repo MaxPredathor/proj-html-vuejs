@@ -3,11 +3,50 @@
     <HeaderComponent />
   </header>
   <main>
-    <div id="rombo" @click="windowTop()" v-show="store.isScrolled">
-      xd
+    <div ref="rombo" id="rombo" @click="windowTop()" v-show="store.isScrolled">
+        <i class="fa-solid fa-angles-up"></i>
     </div>
-    <section id="jumbosello">
-      <img src="/images/cms-banner-01.jpg" alt="temp">
+    <!-- <section id="jumbosello">
+      <div ref="jumbo" class="wrapper">
+        <img src="/images/Vi_League_Of_Legends.jpg" alt="Vi">
+        <img src="/images/League_of_Legends_Darius.jpg" alt="Darius">
+      </div>
+      <i id="right" @click="scrollDownJumbo()" class="fa-solid fa-chevron-right" style="color: #f9aa01;"></i>
+      <i id="left" @click="scrollUpJumbo()" class="fa-solid fa-chevron-left" style="color: #f9aa01;"></i>
+    </section> -->
+    <section class="section-carosello position-relative">
+      <swiper
+      :effect="'cube'"
+      :direction="'vertical'"
+      :loop="true"
+      :speed="3000"
+      :navigation="true"
+      :modules="modules" 
+      :autoplay="{
+        delay: 2000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: false,
+      }"
+      :grabCursor="true"
+      :cubeEffect="{
+        shadow: true,
+        slideShadows: true,
+        shadowOffset: 20,
+        shadowScale: 0.94,
+      }"
+      :pagination="true"
+      class="mySwiper">
+        <swiper-slide
+          ><img
+            src="/images/Vi_League_Of_Legends.jpg" /></swiper-slide
+        ><swiper-slide
+          ><img
+            src="/images/League_of_Legends_Darius.jpg" /></swiper-slide
+        ><swiper-slide
+          ><img
+            src="/images/yuumi.jpg" /></swiper-slide
+        >
+      </swiper>
     </section>
     <section class="container">
       <div class="row">
@@ -114,10 +153,10 @@
         <h2 class="category">Deal Of The Day</h2>
         <div class="small-border position-absolute"></div>
         <div class="choice d-flex justify-content-evenly align-items-center">
-          <div class="col-3 p-3">days</div>
-          <div class="col-3 p-3">hours</div>
-          <div class="col-3 p-3">mins</div>
-          <div class="col-3 p-3">secs</div>
+          <div class="col-3 p-3">Days {{ this.dayCounter }}</div>
+          <div class="col-3 p-3 borderino">Hours {{ this.hoursCounter }}</div>
+          <div class="col-3 p-3 border-rightino">Mins {{ this.minsCounter }}</div>
+          <div class="col-3 p-3">Secs {{ this.secsCounter }}</div>
         </div>
       </div>
       <div ref="slider2" class="row overflow-hidden flex-nowrap mt-5" >  
@@ -182,6 +221,11 @@
 </template>
 
 <script>
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { EffectCube, Navigation, Autoplay } from 'swiper/modules';
+import 'swiper/scss';
+import 'swiper/scss/effect-cube';
+import 'swiper/scss/pagination';
 import { store } from './assets/data/store'
 import HeaderComponent from './components/HeaderComponent.vue'
 import VerticalCard from './components/VerticalCard.vue'
@@ -202,6 +246,8 @@ import LargeCard from './components/LargeCard.vue'
       BrandCard,
       FooterComponent,
       LargeCard,
+      Swiper,
+      SwiperSlide,
     },
     data(){
       return{
@@ -212,7 +258,24 @@ import LargeCard from './components/LargeCard.vue'
         dealOfTheDayCounter: 4,
         blogsCounter: 3,
         brandCounter: 5,
+        secsCounter: 59,
+        minsCounter: 59,
+        hoursCounter: 23,
+        dayCounter: 3,
       }
+    },
+    setup() {
+      const onSwiper = (swiper) => {
+        console.log(swiper);
+      };
+      const onSlideChange = () => {
+        console.log('slide change');
+      };
+      return {
+        modules: [EffectCube, Navigation, Autoplay],
+        onSwiper,
+        onSlideChange,
+      };
     },
     methods:{
       switchOffFlags(){
@@ -444,12 +507,29 @@ import LargeCard from './components/LargeCard.vue'
         store.slideTwoActive = false
         store.slideThreeActive = true
       },
+      scrollDownJumbo(){
+        const slider = this.$refs.jumbo
+        slider.scrollBy({
+          top: + 833,
+          left: 0,
+          behavior : "smooth"
+        });
+      },
+      scrollUpJumbo(){
+        const slider = this.$refs.jumbo
+        slider.scrollBy({
+          top: - 833,
+          left: 0,
+          behavior : "smooth"
+        });
+      },    
       scrollTop(){
         if(window.scrollY >= 1000){
           this.store.isScrolled = true
         }else if(window.scrollY < 1000){
             this.store.isScrolled = false
         }
+        // this. outlineAssign()
       },
       windowTop(){
         window.scrollTo({
@@ -457,33 +537,149 @@ import LargeCard from './components/LargeCard.vue'
           left: 0,
           behavior: "smooth"
         });
+      },
+      timeTrack(){
+        setInterval(()=>{
+          this.secsCounter--
+          if(this.secsCounter < 1){
+            this.secsCounter = 59
+            this.minsCounter--
+          }
+
+          if(this.minsCounter < 1){
+            this.minsCounter = 59
+            this.hoursCounter--
+          }
+        }, 1000)
       }
-      
+      // outlineAssign(){
+      //   const rombo = this.$refs.rombo
+      //   setInterval(()=> {
+      //     rombo.classList.add('my-outline')
+      //   }, 1000)
+      //   setInterval(()=> {
+      //     rombo.classList.remove('my-outline')
+      //   }, 2000)
+      // }
     },
     created(){
       window.addEventListener('scroll', this.scrollTop)
       this.scrollBrandAutomatic()
+      this.timeTrack()
     },
   }
 </script>
 
 <style lang="scss" scoped>
 @use './assets/styles/partials/variables' as *;  
+    .section-carosello{
+      margin-top: 40px;
+      margin-left: 10%;
+      margin-right: 10%;
+      margin-bottom: 80px;
+      width: 80%;
+      height: 80vh;
+    }
+    .swiper {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      // margin-left: -150px;
+      // margin-top: -150px;
+    }
+
+    .swiper-slide {
+      background-position: center;
+      background-size: cover;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+    }
+
     #jumbosello{
       width: 100%;
+      height: 100vh;
+      position: relative;
+      
 
-      img{
+      // .wrapper{
+      //   overflow: hidden;
+      //   display: flex;
+      //   flex-direction: column;
+      //   flex-wrap: nowrap;
+      //   height: 100%;
+      //   width: 100%;
+      //   perspective: 1000px;
+      //   transform-style: preserve-3d;
+      //   transform: translateY(calc(1000 / 2));
+
+        img{
         width: 100%;
+        height: 100%;
         object-fit: contain;
+        
+        }
+      }
+      i{
+        position: absolute;
+        top: 50%;
+        font-size: 40px;
+      }
+      i#right{
+        right: 2%;
+      }
+      i#left{
+        left: 2%;
+      }
+    // #rombo-border{
+    //   width: 32px;
+    //   height: 32px;
+    //   border: 1px solid yellow;
+    // } 
+    .my-outline{
+      outline: 3px solid $palette_yellow;
+    }
+    @keyframes outline {
+      0%{
+        outline: 0;
+      }
+
+      50%{
+        outline: 3px solid $palette_yellow;
+      }
+
+      100%{
+        outline: 0;
       }
     }
     #rombo{
       width: 30px;
       height: 30px;
+      transform: rotate(45deg);
       position: fixed;
       bottom: 10px;
       right: 10px;
       background-color: $palette_yellow;
+      border: 2px solid black;
+      transition: all 0.5s linear;
+      animation: outline 2s infinite;
+
+      i{
+        transform: rotate(-45deg);
+        font-size: 15px;
+        color: black;
+        // padding-left: 15px;
+        // padding-bottom: 10px;
+        position: relative;
+        top: 2px;
+        left: 7px;
+      }
     }
 
     .b-bottom{
@@ -573,11 +769,18 @@ import LargeCard from './components/LargeCard.vue'
       color: white;
       border: 1px solid #9f9baf73;
       text-align: center;
-      font-weight: bold;
-      font-size: 0.8em;
+      font-size: 1em;
       cursor: pointer;
       padding: 0;
+      font-family: 'Oxanium', sans-serif;
 
+      .borderino{
+        border-left: 1px solid #9f9baf73;
+        border-right: 1px solid #9f9baf73;
+      }
+      .border-rightino{
+        border-right: 1px solid #9f9baf73;
+      }
       .is-active{
         color: $palette_yellow;
       }
